@@ -32,6 +32,10 @@ class Movie
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $affiche = null;
 
+    #[ORM\ManyToOne(inversedBy: 'movies')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Category $category = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -105,6 +109,18 @@ class Movie
     public function setAffiche(?string $affiche): static
     {
         $this->affiche = $affiche;
+
+        return $this;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): static
+    {
+        $this->category = $category;
 
         return $this;
     }

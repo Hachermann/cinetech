@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>{{ movie.name }}</title>
+    <title>{{ movie.title }}</title>
     <style>
         body { font-family: sans-serif; margin: 2rem; max-width: 720px; }
         .badge { background: #ffc107; padding: .2rem .6rem; border-radius: 999px; font-weight: bold; }
@@ -11,12 +11,12 @@
 <body>
     <a href="{{ path('app_movie_index') }}">← Retour au catalogue</a>
 
-    <h1>{{ movie.name }}</h1>
-    <p>{{ movie.category|upper }} · {{ movie.releaseYear }}</p>
+    <h1>{{ movie.title }}</h1>
+    <p>{{ movie.category.name|upper }} · {{ movie.dateSortie ? movie.dateSortie|date('d/m/Y') : '' }}</p>
     <p>{{ movie.synopsis }}</p>
-    <p>Note : {{ movie.rating is empty ? 'Non noté' : movie.rating }}</p>
+    <p>Note : {{ movie.NotePresse is empty ? 'Non noté' : movie.NotePresse }}</p>
 
-    {% if movie.rating >= 4.5 %}
+    {% if movie.NotePresse >= 4.5 %}
         <span class="badge">⭐ Coup de cœur</span>
     {% endif %}
 </body>

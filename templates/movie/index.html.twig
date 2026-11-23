@@ -19,14 +19,15 @@
         <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {% for movie in movies %}
                 <article class="flex flex-col gap-2 rounded-xl border border-slate-700 bg-slate-800 p-5 transition hover:-translate-y-1 hover:border-amber-400">
-                    <span class="text-xs font-semibold tracking-wider text-amber-400">{{ movie.category|upper }}</span>
-                    <h2 class="text-xl font-bold text-slate-50">{{ movie.name }}</h2>
-                    <p class="text-sm text-slate-400">Sortie : {{ movie.releaseYear }}</p>
+                    <span class="text-xs font-semibold tracking-wider text-amber-400">{{ movie.category.name|upper }}</span>
+                    <h2 class="text-xl font-bold text-slate-50">{{ movie.title }}</h2>
+                    <p class="text-sm text-slate-400">Sortie : {{ movie.dateSortie ? movie.dateSortie|date('d/m/Y') : '' }}</p>
                     <p class="text-sm leading-relaxed text-slate-400">
-                        {{ movie.synopsis|slice(0, 120) }}{% if movie.synopsis|length > 120 %}…{% endif %}
+                        {{ movie.synopsis|slice(0, 100) }}{% if movie.synopsis|length > 120 %}…{% endif %}
                     </p>
+                   
 
-                    {% if movie.rating >= 4.5 %}
+                    {% if movie.NotePresse >= 4.5 %}
                         <span class="self-start rounded-full bg-amber-400 px-3 py-1 text-sm font-bold text-slate-900">⭐ Coup de cœur</span>
                     {% endif %}
 

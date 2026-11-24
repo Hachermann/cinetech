@@ -20,6 +20,7 @@
             {% for movie in movies %}
                 <article class="flex flex-col gap-2 rounded-xl border border-slate-700 bg-slate-800 p-5 transition hover:-translate-y-1 hover:border-amber-400">
                     <span class="text-xs font-semibold tracking-wider text-amber-400">{{ movie.category.name|upper }}</span>
+                    
                     <h2 class="text-xl font-bold text-slate-50">{{ movie.title }}</h2>
                     <p class="text-sm text-slate-400">Sortie : {{ movie.dateSortie ? movie.dateSortie|date('d/m/Y') : '' }}</p>
                     <p class="text-sm leading-relaxed text-slate-400">
@@ -35,6 +36,11 @@
                        class="mt-auto rounded-lg bg-amber-400 px-4 py-2 text-center font-semibold text-slate-900 hover:bg-amber-500">
                         Voir les détails
                     </a>
+                    <a href="{{ path('app_movie_edit', {id: movie.id}) }}"
+                       class="mt-auto rounded-lg bg-amber-400 px-4 py-2 text-center font-semibold text-slate-900 hover:bg-amber-500">
+                        Modifier le film
+                    </a>
+                    
                 </article>
             {% else %}
                 <p class="text-slate-400">Aucun film à afficher.</p>

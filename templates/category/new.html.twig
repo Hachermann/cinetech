@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouvelle catégorie{% endblock %}
+
+{% block body %}
+<div class="min-h-screen bg-slate-900 px-6 py-10 text-slate-200">
+    <div class="mx-auto max-w-xl rounded-xl border border-slate-700 bg-slate-800 p-8">
+        <a href="{{ path('app_category_index') }}" class="text-sm text-amber-400 hover:text-amber-300">← Retour à la liste</a>
+        <h1 class="mb-6 mt-4 text-3xl font-bold text-slate-50">Nouvelle catégorie</h1>
+
+        {{ include('category/_form.html.twig', {'button_label': 'Créer'}) }}
+    </div>
+</div>
+{% endblock %}

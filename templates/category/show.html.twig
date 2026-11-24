@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ category.name }}{% endblock %}
+
+{% block body %}
+<div class="min-h-screen bg-slate-900 px-6 py-10 text-slate-200">
+    <div class="mx-auto max-w-xl rounded-xl border border-slate-700 bg-slate-800 p-8">
+        <a href="{{ path('app_category_index') }}" class="text-sm text-amber-400 hover:text-amber-300">← Retour à la liste</a>
+
+        <span class="mt-4 block text-xs font-semibold uppercase tracking-wider text-amber-400">Catégorie #{{ category.id }}</span>
+        <h1 class="mt-1 text-3xl font-bold text-slate-50">{{ category.name }}</h1>
+
+        <dl class="mt-6 divide-y divide-slate-700 rounded-lg border border-slate-700">
+            <div class="flex justify-between px-4 py-3">
+                <dt class="text-slate-400">Id</dt>
+                <dd class="font-medium text-slate-50">{{ category.id }}</dd>
+            </div>
+            <div class="flex justify-between px-4 py-3">
+                <dt class="text-slate-400">Nom</dt>
+                <dd class="font-medium text-slate-50">{{ category.name }}</dd>
+            </div>
+        </dl>
+
+        <div class="mt-8 flex items-center gap-3">
+            <a href="{{ path('app_category_edit', {'id': category.id}) }}" class="rounded-lg bg-amber-400 px-5 py-2 font-semibold text-slate-900 transition hover:bg-amber-500">
+                Modifier
+            </a>
+            {{ include('category/_delete_form.html.twig') }}
+        </div>
+    </div>
+</div>
+{% endblock %}

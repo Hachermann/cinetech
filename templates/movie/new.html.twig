@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<h1>Ajouter un produit</h1>
+{# novalidate désactive la validation HTML5 pour tester le Validator serveur #}
+{{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+{{ form_row(form.title) }}
+{{ form_row(form.synopsis) }}
+{{ form_row(form.date_sortie) }}
+{{ form_row(form.duree) }}
+{{ form_row(form.affiche) }}
+{{ form_row(form.note_presse) }}
+<button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded">
+Enregistrer
+</button>
+{{ form_end(form) }}
+{% endblock %}

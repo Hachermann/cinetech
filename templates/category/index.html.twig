@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Catégories{% endblock %}
+
+{% block body %}
+<div class="min-h-screen bg-slate-900 text-slate-200">
+    <main class="mx-auto max-w-5xl px-6 py-10">
+        <div class="mb-8 flex items-center justify-between">
+            <div>
+                <h1 class="text-3xl font-bold text-slate-50">Catégories</h1>
+                <p class="mt-1 text-slate-400">{{ categories|length }} catégorie{{ categories|length > 1 ? 's' : '' }}</p>
+            </div>
+            <a href="{{ path('app_category_new') }}" class="rounded-lg bg-amber-400 px-5 py-2 font-semibold text-slate-900 transition hover:bg-amber-500">
+                + Nouvelle catégorie
+            </a>
+        </div>
+
+        <div class="overflow-hidden rounded-xl border border-slate-700 bg-slate-800">
+            <table class="w-full text-left">
+                <thead class="bg-slate-700/50 text-xs uppercase tracking-wider text-slate-400">
+                    <tr>
+                        <th class="px-6 py-3">Id</th>
+                        <th class="px-6 py-3">Nom</th>
+                        <th class="px-6 py-3 text-right">Actions</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-700">
+                {% for category in categories %}
+                    <tr class="transition hover:bg-slate-700/40">
+                        <td class="px-6 py-4 text-slate-400">{{ category.id }}</td>
+                        <td class="px-6 py-4 font-medium text-slate-50">{{ category.name }}</td>
+                        <td class="px-6 py-4 text-right">
+                            <a href="{{ path('app_category_show', {'id': category.id}) }}" class="mr-4 text-amber-400 hover:text-amber-300">Voir</a>
+                            <a href="{{ path('app_category_edit', {'id': category.id}) }}" class="text-slate-300 hover:text-amber-400">Modifier</a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="3" class="px-6 py-10 text-center text-slate-400">Aucune catégorie pour le moment.</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </main>
+</div>
+{% endblock %}

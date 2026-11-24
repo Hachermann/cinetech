@@ -1,30 +1,50 @@
 {% extends 'base.html.twig' %}
+
+{% block title %}Accueil - CinéCatalogue{% endblock %}
+
 {% block body %}
-        <h1>Catalogue</h1>
-        <p class="subtitle">{{ movies|length }} film{{ movies|length > 1 ? 's' : '' }} disponible{{ movies|length > 1 ? 's' : '' }}</p>
+<div class="min-h-screen bg-slate-900 text-slate-200">
 
-        {% if tag is defined and tag != 'general' %}
-            <p class="subtitle">Recherche : {{ tag|upper }}</p>
-        {% endif %}
-
-        <div class="grid">
-            {% for movie in movies %}
-                <article class="card">
-                    <span class="category">{{ movie.category|upper }}</span>
-                    <h2>{{ movie.name }}</h2>
-                    <p>Sortie : {{ movie.releaseYear }}</p>
-                    <p>{{ movie.synopsis|slice(0, 120) }}{% if movie.synopsis|length > 120 %}…{% endif %}</p>
-
-                    {% if movie.rating >= 4.5 %}
-                        <span class="badge">⭐ Coup de cœur</span>
-                    {% endif %}
-
-                    <a class="btn" href="{{ path('app_movie_show', {id: movie.id}) }}">Voir les détails</a>
-                </article>
-            {% else %}
-                <p class="empty">Aucun film à afficher.</p>
-            {% endfor %}
+    <section class="bg-gradient-to-b from-slate-800 to-slate-900 px-6 py-24 text-center">
+        <span class="text-sm font-semibold uppercase tracking-widest text-amber-400">Bienvenue</span>
+        <h1 class="mx-auto mt-4 max-w-3xl text-4xl font-bold text-slate-50 sm:text-5xl">
+            Votre catalogue de films, en un coup d'œil
+        </h1>
+        <p class="mx-auto mt-6 max-w-2xl text-lg text-slate-400">
+            Parcourez les films, consultez leur fiche détaillée et organisez-les par catégorie.
+        </p>
+        <div class="mt-10 flex flex-wrap justify-center gap-4">
+            <a href="{{ path('app_movie_index') }}"
+               class="rounded-full bg-amber-400 px-8 py-3 font-semibold text-slate-900 transition hover:-translate-y-0.5 hover:bg-amber-500">
+                Voir le catalogue
+            </a>
+            <a href="{{ path('app_category_index') }}"
+               class="rounded-full border border-slate-600 px-8 py-3 font-semibold text-slate-200 transition hover:-translate-y-0.5 hover:bg-slate-800">
+                Parcourir les catégories
+            </a>
         </div>
-        {% endblock %}
+    </section>
 
+    <section class="mx-auto grid max-w-5xl grid-cols-1 gap-6 px-6 py-16 md:grid-cols-3">
+        <a href="{{ path('app_movie_index') }}" class="rounded-xl border border-slate-700 bg-slate-800 p-6 transition hover:-translate-y-1 hover:border-amber-400">
+            <div class="text-3xl">🎞️</div>
+            <h2 class="mt-4 text-lg font-bold text-slate-50">Tous les films</h2>
+            <p class="mt-2 text-sm leading-relaxed text-slate-400">Une grille de cartes avec le titre, la catégorie et l'année de sortie.</p>
+        </a>
+        <a href="{{ path('app_category_index') }}" class="rounded-xl border border-slate-700 bg-slate-800 p-6 transition hover:-translate-y-1 hover:border-amber-400">
+            <div class="text-3xl">🗂️</div>
+            <h2 class="mt-4 text-lg font-bold text-slate-50">Catégories</h2>
+            <p class="mt-2 text-sm leading-relaxed text-slate-400">Créez, modifiez et supprimez les catégories de films.</p>
+        </a>
+        <div class="rounded-xl border border-slate-700 bg-slate-800 p-6">
+            <div class="text-3xl">⭐</div>
+            <h2 class="mt-4 text-lg font-bold text-slate-50">Coups de cœur</h2>
+            <p class="mt-2 text-sm leading-relaxed text-slate-400">Les films les mieux notés par la presse sont signalés par un badge.</p>
+        </div>
+    </section>
 
+    <footer class="border-t border-slate-800 py-8 text-center text-sm text-slate-500">
+        © {{ "now"|date("Y") }} CinéCatalogue
+    </footer>
+</div>
+{% endblock %}
